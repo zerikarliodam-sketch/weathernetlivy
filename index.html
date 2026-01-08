@@ -1,0 +1,1040 @@
+  <!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netlivy</title>
+  <style>
+    
+        :root {
+            --app-bg: #050505;
+            --card-bg: #121212;
+            --accent-kiwi: #8EE53F;
+            --text-dim: #a0a0a0;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--app-bg);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .application-global-viewport-wrapper {
+            padding: 20px 20px 100px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- DASHBOARD WIDGETS --- */
+        .dashboard-header-section {
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .dashboard-welcome-text { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+        .dashboard-date-display { color: var(--text-dim); font-size: 14px; }
+
+        .dashboard-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .mini-status-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mini-card-icon { color: var(--accent-kiwi); font-size: 18px; }
+        .mini-card-label { font-size: 12px; color: var(--text-dim); }
+        .mini-card-value { font-size: 16px; font-weight: 700; }
+
+        /* --- WEATHER SECTION --- */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .weather-search-bar-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .weather-search-bar-container input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 15px 20px 15px 45px;
+            border-radius: 15px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .weather-search-bar-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+        }
+
+        .global-city-weather-information-card {
+            background: linear-gradient(145deg, #1a1a1a, #121212);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .weather-info-main { display: flex; flex-direction: column; gap: 4px; }
+        .city-name-text { font-size: 18px; font-weight: 700; }
+        .local-time-text { font-size: 13px; color: var(--text-dim); }
+        
+        .temp-display-wrapper { text-align: right; }
+        .temp-value-text { font-size: 28px; font-weight: 800; color: var(--accent-kiwi); }
+        .condition-desc-text { font-size: 12px; color: var(--text-dim); text-transform: capitalize; }
+
+        /* --- NAVIGATION --- */
+        .modern-floating-navigation-bar {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-dim);
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-action-item i { font-size: 22px; }
+        .nav-action-item span { font-size: 10px; margin-top: 4px; font-weight: 600; opacity: 0; transition: 0.3s; }
+
+        .nav-action-item.is-active { color: var(--accent-kiwi); transform: translateY(-5px); }
+        .nav-action-item.is-active span { opacity: 1; }
+
+    
+
+    
+
+    
+
+     
+
+    
+
+  
+
+
+
+
+  <F-8">
+  <title>MediaHub - Musiqa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Classic", sans-serif;
+      background-color: #111;
+      color: white;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .menu-popup {
+      position: fixed;
+      top: 55px;
+      left: 15px;
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 998;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .menu-item {
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #333;
+    }
+
+    .menu-item.current {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title> NetliVy time</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111;
+      color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .search-box {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    input[type="text"] {
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      border: none;
+      width: 90%;
+      max-width: 400px;
+      font-size: 1rem;
+    }
+
+    .card {
+      background: #1c1c1c;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid #444;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-left: 4px solid #fff;
+      transform: scale(1.01);
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .h1 {
+      color: 
+      
+    }
+    .city {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .time {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    .zone {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .right {
+      text-align: right;
+      font-size: 0.85rem;
+    }
+.search{
+    display:flex; gap:10px; align-items:center;
+    background:var(--glass); border:1px solid rgba(255,255,255,.08);
+    border-radius:999px; padding:8px 12px; backdrop-filter: blur(var(--card-blur));
+    width:100%;
+  }
+  .search input{
+    flex:1; background:transparent; border:0; outline:none; color:var(--txt); font-size:.95rem;
+  }
+  
+    .icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .weather span {
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+
+    @media(max-width: 600px) {
+      .card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .right {
+        text-align: left;
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  
+    <div class="application-global-viewport-wrapper">
+        
+        <header class="dashboard-header-section">
+            <div class="dashboard-welcome-text" id="greeting-js">Xayrli kun!</div>
+            <div class="dashboard-date-display" id="date-display-js">Payshanba, 8-yanvar</div>
+        </header>
+
+        <div class="dashboard-grid-layout">
+            <div class="mini-status-card">
+                <i class="fa-solid fa-money-bill-transfer mini-card-icon"></i>
+                <span class="mini-card-label">USD Kursi</span>
+                <span class="mini-card-value">$11,968.59</span>
+            </div>
+            <div class="mini-status-card">
+                <i class="fa-solid fa-quote-left mini-card-icon"></i>
+                <span class="mini-card-label">Motivatsiya</span>
+                <span class="mini-card-value" style="font-size: 11px;">"Bugun eng yaxshi kun!"</span>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span>Global Ob-havo</span>
+        </div>
+
+  <div class="search">
+     <i class="fa-solid fa-magnifying-glass" style="color:var(--muted)"></i>
+    <input type="text" id="searchInput" placeholder="Search for cities or countries...">
+  </div>
+
+  <div id="weather-container"></div>
+
+  <script>
+    const apiKey = "ae6192f78b574cbda81112541252508";
+
+    const defaultCountries = [
+      "Tashkent",
+      "New York",
+      "Dushanbe",
+      "Tokyo",
+      "Moscow",
+      "Dubai",
+      "Beijing",
+      "Ankara",
+      "Astana",
+      "Bishkek"
+    ];
+
+    const weatherEmojis = {
+      Sunny: "☀️",
+      Clear: "🌙",
+      Cloudy: "☁️",
+      Overcast: "☁️",
+      "Partly cloudy": "⛅",
+      Rain: "🌧",
+      "Patchy rain possible": "🌦",
+      Snow: "❄️",
+      Thunder: "⛈️",
+      Mist: "🌫️"
+    };
+
+    let currentData = [];
+
+    async function fetchWeather(city) {
+      try {
+        const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+        const data = await res.json();
+
+        const tz = data.location.tz_id;
+        const utcOffset = data.location.utc_offset;
+        const isDay = data.current.is_day;
+        const weatherIcon = weatherEmojis[data.current.condition.text] || "🌍";
+        const temp = data.current.temp_c;
+        const wind = data.current.wind_kph;
+        const humidity = data.current.humidity;
+
+        currentData.push({
+          city: data.location.name,
+          country: data.location.country,
+          tz,
+          utcOffset,
+          isDay,
+          weatherIcon,
+          temp,
+          humidity,
+          wind
+        });
+
+      } catch (e) {
+        currentData.push({ city, error: true });
+      }
+    }
+
+    function updateTimes() {
+      const now = new Date();
+      const container = document.getElementById("weather-container");
+      container.innerHTML = "";
+
+      currentData.forEach(entry => {
+        if (entry.error) {
+          container.innerHTML += `<div class="card"><div class="city">${entry.city}</div><div class="time">Maʼlumot topilmadi</div></div>`;
+          return;
+        }
+
+        const localTime = new Date(now.toLocaleString("en-US", { timeZone: entry.tz }));
+        const timeStr = localTime.toLocaleTimeString();
+        const icon = entry.isDay
+          ? '<i class="fi fi-rr-brightness icon"></i>'
+          : '<i class="fi fi-sr-moon-stars icon"></i>';
+
+        container.innerHTML += `
+          <div class="card">
+            <div class="left">
+              <div class="city">${entry.city}, ${entry.country}</div>
+              <div class="time">${timeStr}</div>
+              <div class="zone">Vaqt zonasi: UTC${entry.utcOffset >= 0 ? '+' : ''}${entry.utcOffset}</div>
+            </div>
+            <div class="right">
+              ${icon}
+              <div class="weather">
+                <span>${entry.weatherIcon}</span>
+                <span>🌡 ${entry.temp}°C</span>
+                <span>💧 ${entry.humidity}%</span>
+                <span>🌬 ${entry.wind} kph</span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    async function loadDefaultCities() {
+      currentData = [];
+      const promises = defaultCountries.map(city => fetchWeather(city));
+      await Promise.all(promises);
+      updateTimes();
+    }
+
+    async function handleSearch() {
+      const city = document.getElementById("searchInput").value.trim();
+      if (!city) return;
+      currentData = [];
+      await fetchWeather(city);
+      updateTimes();
+    }
+
+    document.getElementById("searchInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    });
+
+    // Update time every second
+    setInterval(updateTimes, 1000);
+
+    // Refresh weather data every minute
+    setInterval(loadDefaultCities, 60000);
+
+    // Initial load
+    loadDefaultCities();
+  </script>
+</body>
+</html>
+ <!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .carrot-link {
+      display: block;
+      color: #ED9121; /* Sabzirang */
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+      text-decoration: none; /* Tagidagi chiziqni olib tashlaydi */
+      margin: 20px auto 0;
+      text-align: center;
+    }
+
+    .carrot-link:hover {
+      text-decoration: underline; /* Hover effekti (ixtiyoriy) */
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="https://instagram.com/car1mof" target="_blank" class="carrot-link">
+      
+    </a>
+  </div>
+</body>
+</html>
+</a>
+</div>
+  <!-- Chap yuqoridagi uch chiziqli tugma -->
+  <div class="menu-toggle" onclick="toggleMenu"></div>
+
+  <!-- Menyu popup -->
+  <div id="menu-popup" class="menu-popup">
+    <div class="menu-item">🎬 Film</div>
+    <div class="menu-item current">🎵 Musiqa</div>
+    <div class="menu-item">😂 Tavsiya etiladi (kulgili)</div>
+  </div>
+  <!-- Sayt asosiy qismi -->
+  <div style="padding: 80px 20px; color: white">
+
+
+  </div>
+ 
+
+  <script>
+    let menuVisible = false;
+
+    function toggleMenu() {
+      const popup = document.getElementById("menu-popup");
+      menuVisible = !menuVisible;
+      popup.style.display = menuVisible ? "flex" : "none";
+    }
+  </script>
+</body>
+</html>
+
+
+  
+
+
+  
+  
+  
+  
+    </body>
+  
+</script>
+  <!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
+      min-height: 150vh; /* Scroll qilish uchun uzun sahifa */
+    }
+
+    .white-box {
+      width: 200%;
+      height: 150px;
+      padding: 20px;
+      border-radius: 10%;
+      background-color: #fafafa;
+      margin-top: 100px; /* Yuqoridan ozgina joy */
+    }
+  </style>
+</head>
+<body>
+  <h2 style="
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+">
+  
+</h2>
+  <body>
+<p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+  
+</p>
+
+<p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+ 
+</p>
+    
+ <p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+ 
+ </p> 
+    <p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+    
+    </p>  
+    <p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+    
+      </p>
+    <p> <p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+     
+    </p>
+      <p> <p style="text-align: left; color: white; font-size: 13px; padding: 10px; font-weight: 700;">
+        
+      </p>
+    
+    </body>
+<div style="
+  width: 60px;
+  height: 4px;
+  margin: 0 auto 20px auto;
+  background: linear-gradient(to right, #ffcc00, #ff6600);
+  border-radius: 10px;
+"></div>
+    <html lang="uz">
+
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Netlivy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #12212;
+      color: white;
+    }
+
+    /* Pastki navbar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 65px;
+      background-color: #1e1e1e;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #ccc;
+      font-size: 12px;
+      text-decoration: none;
+      flex-grow: 1;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .nav-item:hover {
+      color: #8EE53F; /* Kiwi rang */
+      transform: scale(1.15);
+    }
+
+    .nav-icon {
+      font-size: 24px;
+      margin-bottom: 5px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Kontent -->
+  <div style="padding-bottom: 80px; text-align:center; padding-top:50px;">
+    <h2></h2>
+  </div>
+
+   <!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>X Style Navbar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #222;
+      z-index: 10;
+      padding: 5px 0;
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      padding: 6px 0;
+      font-size: 11px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item i {
+      font-size: 20px;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .nav-item:hover {
+      color: #ccc;
+    }
+
+    .nav-item.active {
+      color: white;
+      font-weight: bold;
+      border-top: 2px solid #fff;
+    }
+  .card profile-card {
+    width: 100%;
+    height: 100%;
+  }
+  .fullscreen-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;   /* fon rangi */
+  z-index: 9999;
+  overflow-y: auto;
+  color: white;
+  padding: 20px;
+}
+  </style>
+</head>
+<body>
+
+
+
+  <!-- JavaScript -->
+  <script>
+    function showSection(id) {
+      // Barcha bo'limlarni yashiramiz
+      document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+
+      // Faqat keraklisini ko'rsatamiz
+      document.getElementById(id).classList.add('active');
+
+      // Barcha tugmalardan 'active' klassini olib tashlaymiz
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+      // Bosilgan tugmaga 'active' klassini qo‘shamiz
+      const btns = document.querySelectorAll('.nav-item');
+      btns.forEach(btn => {
+        if (btn.getAttribute('onclick') === `showSection('${id}')`) {
+          btn.classList.add('active');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
+    
+
+  </style>
+</head>
+<body>
+
+
+
+  <div id="weather-container"></div>
+
+  <script>
+    const apiKey = "ae6192f78b574cbda81112541252508";
+
+    const defaultCountries = [
+      "Tashkent",
+      "New York",
+      "Dushanbe",
+      "Tokyo",
+      "Moscow",
+      "Dubai",
+      "Beijing",
+      "Ankara",
+      "Astana",
+      "Bishkek",
+      "Paris"
+  
+    ];
+
+    const weatherEmojis = {
+      Sunny: "☀️",
+      Clear: "🌙",
+      Cloudy: "☁️",
+      Overcast: "☁️",
+      "Partly cloudy": "⛅",
+      Rain: "🌧",
+      "Patchy rain possible": "🌦",
+      Snow: "❄️",
+      Thunder: "⛈️",
+      Mist: "🌫️"
+    };
+
+    let currentData = [];
+
+    async function fetchWeather(city) {
+      try {
+        const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+        const data = await res.json();
+
+        const tz = data.location.tz_id;
+        const utcOffset = data.location.utc_offset;
+        const isDay = data.current.is_day;
+        const weatherIcon = weatherEmojis[data.current.condition.text] || "🌍";
+        const temp = data.current.temp_c;
+        const wind = data.current.wind_kph;
+        const humidity = data.current.humidity;
+
+        currentData.push({
+          city: data.location.name,
+          country: data.location.country,
+          tz,
+          utcOffset,
+          isDay,
+          weatherIcon,
+          temp,
+          humidity,
+          wind
+        });
+
+      } catch (e) {
+        currentData.push({ city, error: true });
+      }
+    }
+
+    function updateTimes() {
+      const now = new Date();
+      const container = document.getElementById("weather-container");
+      container.innerHTML = "";
+
+      currentData.forEach(entry => {
+        if (entry.error) {
+          container.innerHTML += `<div class="card"><div class="city">${entry.city}</div><div class="time">Yangilang yoki muammo bor</div></div>`;
+          return;
+        }
+
+        const localTime = new Date(now.toLocaleString("en-US", { timeZone: entry.tz }));
+        const timeStr = localTime.toLocaleTimeString();
+        const icon = entry.isDay
+          ? '<i class="fi fi-rr-brightness icon"></i>'
+          : '<i class="fi fi-sr-moon-stars icon"></i>';
+
+        container.innerHTML += `
+          <div class="card">
+            <div class="left">
+              <div class="city">${entry.city}, ${entry.country}</div>
+              <div class="time">${timeStr}</div>
+              <div class="zone">Vaqt zonasi: UTC${entry.utcOffset >= 0 ? '+' : ''}${entry.utcOffset}</div>
+            </div>
+            <div class="right">
+              ${icon}
+              <div class="weather">
+                <span>${entry.weatherIcon}</span>
+                <span>🌡 ${entry.temp}°C</span>
+                <span>💧 ${entry.humidity}%</span>
+                <span>🌬 ${entry.wind} kph</span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    async function loadDefaultCities() {
+      currentData = [];
+      const promises = defaultCountries.map(city => fetchWeather(city));
+      await Promise.all(promises);
+      updateTimes();
+    }
+
+    async function handleSearch() {
+      const city = document.getElementById("searchInput").value.trim();
+      if (!city) return;
+      currentData = [];
+      await fetchWeather(city);
+      updateTimes();
+    }
+
+    document.getElementById("searchInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    });
+
+    // Update time every second
+    setInterval(updateTimes, 10000);
+
+    // Refresh weather data every minute
+    setInterval(loadDefaultCities, 70000);
+
+    // Initial load
+    loadDefaultCities();
+  </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Audio elementni topamiz (asosiy kodingda <audio> tag bor bo'lishi kerak)
+    const audio = document.querySelector("audio");
+
+    // Fon rangini o'zgartirish funksiyasi
+    function changeBackgroundByMusic() {
+        if (!audio) return; // Agar audio topilmasa, chiqib ketamiz
+        const colors = [
+            "#ff7675", "#74b9ff", "#55efc4",
+            "#ffeaa7", "#a29bfe", "#fab1a0",
+            "#fd79a8", "#00cec9", "#fdcb6e"
+        ];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.body.style.transition = "background 0.5s ease";
+        document.body.style.background = randomColor;
+    }
+function updateHeader() {
+            const now = new Date();
+            const hour = now.getHours();
+            const greet = hour < 12 ? "Xayrli tong" : hour < 18 ? "Xayrli kun" : "Xayrli kecha";
+            document.getElementById('greeting-js').innerText = `${greet}, Aziz!`;
+            
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
+            document.getElementById('date-display-js').innerText = now.toLocaleDateString('uz-UZ', options);
+        }
+
+    // Musiqa o‘ynaganda rangni o‘zgartirib turish
+    if (audio) {
+        audio.addEventListener("timeupdate", function () {
+            if (!audio.paused && !audio.ended) {
+                changeBackgroundByMusic();
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Montserrat Font</title>
+
+  <!-- Google Fonts: Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #ff4f4;
+      color: #22;
+      padding: 20px;
+    }
+    h1 {
+      font-weight: 700;
+    }
+    p {
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+</body>
+</html>
